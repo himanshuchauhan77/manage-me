@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% block title %}Manage Me{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'finance/app.css' %}" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="{% url 'app_hub' %}"
+        ><span class="brand-mark">M</span> Manage<span class="brand-light"
+          >Me</span
+        ></a
+      >
+      <nav>
+        <a href="{% url 'app_hub' %}">All apps</a>
+        <a class="group-context" href="{% url 'household_groups' %}">{% if active_household %}<span>ACTIVE GROUP</span><strong>{{ active_household.name }}</strong>{% else %}Household Groups{% endif %}</a>
+        <a href="{% url 'transaction_list' %}">Transactions</a
+        ><a href="{% url 'analytics' %}">Analytics</a
+        ><a href="{% url 'goal_list' %}">Goals</a
+        ><a href="{% url 'category_list' %}">Categories</a>
+      </nav>
+      <div class="account">
+        {{ request.user.username }}
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}<button class="link-button">Sign out</button>
+        </form>
+      </div>
+    </header>
+    <main class="shell">
+      {% if messages %}{% for message in messages %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}{% endif %}{% block content %}{% endblock %}
+    </main>
+    <footer>Shared money, clearer decisions.</footer>
+  </body>
+</html>

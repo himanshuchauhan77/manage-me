@@ -2,7 +2,7 @@
 
 A shared Django platform with one account system and an app launcher. Finance Manager is the first available app, with household spending and budgeting. Habit Tracker and Daily Planner are listed as planned apps. All apps share the authenticated workspace; each app keeps its own routes, data models, and features. The launcher is the natural entry point for adding future apps.
 
-Finance Manager supports flexible groups with any number of members, and attributes each transaction to the member who entered them.
+Finance Manager supports flexible groups with any number of members, and attributes each transaction to the member who entered it.
 
 ## Requirements
 
